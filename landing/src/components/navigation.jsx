@@ -14,7 +14,6 @@ export const Navigation = (props) => {
         <div className="navbar-header">
           <a className="navbar-brand" href="#page-top">
           <img src="img/Artex Logo Purple.jpg" alt="Logo" className="logo" />
-          <div className="logo"></div>
           </a>
           <button
             type="button"
