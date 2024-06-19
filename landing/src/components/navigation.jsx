@@ -13,7 +13,7 @@ export const Navigation = (props) => {
       <div className="container">
         <div className="navbar-header">
           <a className="navbar-brand" href="#page-top">
-            <img src="/landing/public/img/ARTEX Logo Purple.jpg" alt="Logo" className="logo" />
+            <img src="img/ARTEX Logo Purple.jpg" alt="Logo" className="logo" />
           </a>
           <button
             type="button"
