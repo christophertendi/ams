@@ -4,7 +4,7 @@ export const Features = (props) => {
   const styles = {
     featureItem: {
       textAlign: "center",
-      margin: "-5px auto", 
+      margin: "2px auto", 
     },
     featureIcon: {
       fontSize: "3em",
@@ -16,7 +16,7 @@ export const Features = (props) => {
     },
     featureText: {
       fontSize: "1em",
-      marginTop: "10px",
+      marginTop: "5px",
     },
   };
 
