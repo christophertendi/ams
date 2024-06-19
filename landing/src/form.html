@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<form action="https://formsubmit.co/chris.samuelten@example.com" method="POST">
+    <label for="nama">Nama:</label>
+    <input type="text" id="nama" name="nama" required>
+
+    <label for="nomorTelpon">Nomor Telpon:</label>
+    <input type="tel" id="nomorTelpon" name="nomorTelpon" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="produk">Pilih Produk:</label>
+    <select id="produk" name="produk" required>
+        <option value="cotton combed">Cotton Combed</option>
+        <option value="cotton artisan">Cotton Artisan</option>
+        <option value="cotton carded">Cotton Carded</option>
+        <option value="cvc">CVC</option>
+        <option value="double face">Double Face</option>
+        <option value="enzyme">Enzyme</option>
+        <option value="fleece">Fleece</option>
+        <option value="hyget">Hyget</option>
+        <option value="lacoste">Lacoste</option>
+        <option value="misty">Misty</option>
+        <option value="PE">PE</option>
+        <option value="polymesh">Polymesh</option>
+        <option value="printing">Printing</option>
+        <option value="rayon">Rayon</option>
+        <option value="TC">TC</option>
+    </select>
+
+    <label for="alamatKirim">Alamat Kirim:</label>
+    <input type="text" id="alamatKirim" name="alamatKirim" required>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
