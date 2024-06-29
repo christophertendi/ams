@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Order = () => {
-  const [hover, setHover] = useState(false);
+  const [hover, setHover] = useState({ submit: false, tambah: false, hapus: {} });
   const [formData, setFormData] = useState({
     nama: '',
     nomorTelpon: '',
@@ -10,12 +10,32 @@ const Order = () => {
     products: [{ produk: 'cotton combed', jumlah: '' }]
   });
 
-  const handleMouseEnter = () => {
-    setHover(true);
+  const handleMouseEnter = (buttonType, index = null) => {
+    if (index !== null) {
+      setHover((prevHover) => ({
+        ...prevHover,
+        hapus: { ...prevHover.hapus, [index]: true }
+      }));
+    } else {
+      setHover((prevHover) => ({
+        ...prevHover,
+        [buttonType]: true
+      }));
+    }
   };
 
-  const handleMouseLeave = () => {
-    setHover(false);
+  const handleMouseLeave = (buttonType, index = null) => {
+    if (index !== null) {
+      setHover((prevHover) => ({
+        ...prevHover,
+        hapus: { ...prevHover.hapus, [index]: false }
+      }));
+    } else {
+      setHover((prevHover) => ({
+        ...prevHover,
+        [buttonType]: false
+      }));
+    }
   };
 
   const handleChange = (e, index) => {
@@ -42,6 +62,14 @@ const Order = () => {
     setFormData({
       ...formData,
       products: [...formData.products, { produk: 'cotton combed', jumlah: '' }]
+    });
+  };
+
+  const handleRemoveProduct = (index) => {
+    const updatedProducts = formData.products.filter((_, i) => i !== index);
+    setFormData({
+      ...formData,
+      products: updatedProducts
     });
   };
 
@@ -127,7 +155,7 @@ const Order = () => {
               <label htmlFor={`produk-${index}`} style={styles.label}>Pilih Produk:</label>
               <select
                 id={`produk-${index}`}
-                name={`produk-${index}`}
+                name="produk"
                 value={product.produk}
                 onChange={(e) => handleChange(e, index)}
                 required
@@ -154,13 +182,28 @@ const Order = () => {
               <input
                 type="number"
                 id={`jumlah-${index}`}
-                name={`jumlah-${index}`}
+                name="jumlah"
                 value={product.jumlah}
                 onChange={(e) => handleChange(e, index)}
                 min="1"
                 required
                 style={styles.input}
               />
+              {index > 0 && (
+                <button
+                  type="button"
+                  onClick={() => handleRemoveProduct(index)}
+                  onMouseEnter={() => handleMouseEnter('hapus', index)}
+                  onMouseLeave={() => handleMouseLeave('hapus', index)}
+                  style={
+                    hover.hapus[index] 
+                      ? { ...styles.button, ...styles.buttonHover, backgroundColor: 'red' }
+                      : { ...styles.button, backgroundColor: 'red', marginTop: '5px' }
+                  }
+                >
+                  Hapus Produk
+                </button>
+              )}
             </div>
           ))}
 
@@ -168,7 +211,9 @@ const Order = () => {
             <button
               type="button"
               onClick={handleAddProduct}
-              style={styles.button}
+              onMouseEnter={() => handleMouseEnter('tambah')}
+              onMouseLeave={() => handleMouseLeave('tambah')}
+              style={hover.tambah ? { ...styles.button, ...styles.buttonHover } : styles.button}
             >
               Tambah Produk
             </button>
@@ -187,9 +232,9 @@ const Order = () => {
 
           <button
             type="submit"
-            style={hover ? { ...styles.button, ...styles.buttonHover } : styles.button}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            style={hover.submit ? { ...styles.button, ...styles.buttonHover } : styles.button}
+            onMouseEnter={() => handleMouseEnter('submit')}
+            onMouseLeave={() => handleMouseLeave('submit')}
           >
             Submit
           </button>
@@ -237,35 +282,37 @@ const styles = {
     width: '100%',
     padding: '8px',
     marginTop: '5px',
-    border: '1px solid #ccc',
+    marginBottom: '10px',
     borderRadius: '4px',
+    border: '1px solid #ccc',
     boxSizing: 'border-box',
   },
   select: {
     width: '100%',
     padding: '8px',
     marginTop: '5px',
-    border: '1px solid #ccc',
+    marginBottom: '10px',
     borderRadius: '4px',
+    border: '1px solid #ccc',
     boxSizing: 'border-box',
   },
   productContainer: {
-    marginBottom: '10px',
+    marginBottom: '15px',
   },
   button: {
     padding: '10px 15px',
-    marginTop: '10px',
-    backgroundColor: '#525a9d', // Purple base color
+    fontSize: '14px',
     color: 'white',
-    border: '2px solid transparent', // Maintain border size
+    backgroundColor: '#5362a3',
+    border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
-    transition: 'background-color 0.3s, color 0.3s', // Remove border transition
+    transition: 'background-color 0.3s ease',
+    display: 'block',
+    marginTop: '10px',
   },
   buttonHover: {
-    backgroundColor: 'white',
-    color: '#525a9d',
-    border: '2px solid #525a9d', // Maintain border size
+    backgroundColor: '#45538E',
   },
 };
 
