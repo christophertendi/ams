@@ -7,7 +7,6 @@ import { Gallery } from "./components/gallery";
 import { FaqAccordion } from "./components/faq";
 import { Order } from "./components/order";
 import { Contact } from "./components/contact";
-
 import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 import "./App.css";
